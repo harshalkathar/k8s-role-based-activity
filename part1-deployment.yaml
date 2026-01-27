@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jupyter-deploy
+  namespace: jupyter-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jupyter
+  template:
+    metadata:
+      labels:
+        app: jupyter
+    spec:
+      containers:
+      - name: jupyter
+        image: harshal1098/jupyter-ml:1.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8888
+        envFrom:
+        - configMapRef:
+            name: jupyter-config
+        - secretRef:
+            name: jupyter-secret
+
