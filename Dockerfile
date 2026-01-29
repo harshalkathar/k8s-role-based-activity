@@ -27,4 +27,6 @@ RUN pip install --no-cache-dir \
 EXPOSE 8888
 
 # 6. Start JupyterLab
+#To make Jupyter use a custom token
+#--NotebookApp.token=${JUPYTER_TOKEN}
 CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
